@@ -1,0 +1,33 @@
+<?php
+
+function progress_bar($done, $total, $info="", $width=50) {
+    $perc = round(($done * 100) / $total);
+    $bar = round(($width * $perc) / 100);
+    return sprintf("\e[33m%s%%[%s>%s]%s\r\e[33m", $perc, str_repeat("=", $bar), str_repeat(" ", $width-$bar), $info);
+}
+for($i=0;$i<=100;$i++){
+    usleep(500);
+    echo progress_bar($i,100,'wiping..');
+}
+echo "\n";
+for($i=0;$i<=1000;$i++){
+    usleep(500);
+    echo progress_bar($i,1000,'wiping...');
+}
+echo "\n";
+for($i=0;$i<=5000;$i++){
+    usleep(500);
+    echo progress_bar($i,1000,'wiping...');
+}
+echo "\n";
+for($i=0;$i<=3000;$i++){
+    usleep(500);
+    echo progress_bar($i,1000,'wiping...');
+}
+echo "\n";
+for($i=0;$i<=1000;$i++){
+    usleep(500);
+    echo progress_bar($i,1000,'wiping...');
+}
+echo "\n";
+echo "\e[32m Wiping data complete please restart your device!.";
